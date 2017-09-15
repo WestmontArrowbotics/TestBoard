@@ -12,10 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	final String defaultAuto = "Default";
-	final String customAuto = "My Auto";
-	String autoSelected;
-	SendableChooser<String> chooser = new SendableChooser<>();
+	
+	public static Chassis chassis;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -23,9 +21,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		chooser.addDefault("Default Auto", defaultAuto);
-		chooser.addObject("My Auto", customAuto);
-		SmartDashboard.putData("Auto choices", chooser);
+		chassis = new Chassis();
 	}
 
 	/**
@@ -42,8 +38,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autoSelected = chooser.getSelected();
-		// autoSelected = SmartDashboard.getString("Auto Selector",
-		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
 	}
 
@@ -70,6 +64,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance.run();
 		SmartDashboard.putNumber("Range Finder Value", RobotMap.rangeFinder.getAverageValue());
+		Robot.chassis.drive();
 	}
 
 	/**
