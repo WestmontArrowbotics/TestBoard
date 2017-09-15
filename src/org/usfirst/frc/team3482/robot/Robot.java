@@ -68,6 +68,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		Scheduler.getInstance.run();
 		SmartDashboard.putNumber("Range Finder Value", RobotMap.rangeFinder.getAverageValue());
 	}
 
