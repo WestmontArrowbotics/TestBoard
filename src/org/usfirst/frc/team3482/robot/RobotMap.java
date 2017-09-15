@@ -6,11 +6,17 @@ import edu.wpi.first.wpilibj.AnalogInput;
 
 
 public class RobotMap {
-	public static CANTalon talon1;
+	public static CANTalon frontLeft;
+	public static CANTalon frontRight;
+	public static CANTalon backLeft;
+	public static CANTalon backRight;
 	public static AnalogInput rangeFinder;
 	
 	public void init(){
-		talon1 = new CANTalon(1);
+		frontLeft = new CANTalon(0);
+		frontRight = new CANTalon(1);
+		backLeft = new CANTalon(2);
+		backRight = new CANTalon(3);
 		rangeFinder = new AnalogInput(0);
 	}
 }
